@@ -1,4 +1,4 @@
-/*! angular-fast-i18n - v0.0.5 - 2014-07-09
+/*! angular-fast-i18n - v0.0.13 - 2014-07-09
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
 
@@ -11,7 +11,8 @@ angular.module('ngFastI18n.controllers', [])
 	];
 
 	$scope.setLanguage = function(e) {
-		i18nService.setLanguage(e);
+		i18nService.previous = i18nService.current;
+		i18nService.current = e; 
 	};
 }]);
 'use strict';
@@ -27,21 +28,11 @@ angular.module('ngFastI18n.directives', [])
 		}
 	};
 }]);
-'use strict';
-
 angular.module('ngFastI18n.services', [])
 .factory('i18nService', [ '$q', '$resource', function($q, $resource) {
-	
-	var previous;
-	var current;
-
-	function setLanguage(lang) {
-		previous = current;
-		current = lang;
-	}
-
-	function getString(identifier) {
-		var languageFilePath = 'i18n/languages/'+current+'.json';
+	'use strict';	
+	var getString = function (identifier) {
+		var languageFilePath = 'i18n/languages/'+this.current+'.json';
 		var result = null;
 		var deferred = $q.defer();
 
@@ -54,14 +45,14 @@ angular.module('ngFastI18n.services', [])
 		});
 
 		return deferred.promise;
-	}
+	};
 
-	function translate(elm, attr) {
-		if ( typeof current === "undefined" ) {
-			current = navigator.language || navigator.userLanguage;
-			current = current.substr(0, 2);
-			if ( current == null ) {
-				current = 'en';
+	var translate = function (elm, attr) {
+		if ( typeof this.current === "undefined" ) {
+			this.current = navigator.language || navigator.userLanguage;
+			this.current = this.current.substr(0, 2);
+			if ( this.current == null ) {
+				this.current = 'en';
 			}
 		}
 
@@ -72,8 +63,9 @@ angular.module('ngFastI18n.services', [])
 			var value = split[2];
 		}
 
-		var languageFilePath = 'i18n/languages/'+current+'.json';
+		var languageFilePath = 'i18n/languages/'+this.current+'.json';
 
+		var previous = this.previous;
         $resource(languageFilePath).get(function (data) {
             var result = data;
 			for (var i = 0, split = value.split('.'); i !== split.length && result; ++i) {
@@ -114,12 +106,11 @@ angular.module('ngFastI18n.services', [])
 			}
 
 		});
-	}
+	};
 
 	return  {
-		current: current,
-		previous: previous,
-		setLanguage: setLanguage,
+		current: this.current,
+		previous: this.previous,
 		getString: getString,
 		translate: translate
 	};
