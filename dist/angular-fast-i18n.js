@@ -1,4 +1,4 @@
-/*! angular-fast-i18n - v0.0.13 - 2014-07-09
+/*! angular-fast-i18n - v0.0.14 - 2014-07-09
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
 
