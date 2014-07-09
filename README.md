@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/bahaaldine/angular-fast-i18n.svg?branch=master)](https://travis-ci.org/bahaaldine/angular-fast-i18n)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 # Angular Fast i18n
