@@ -1,3 +1,5 @@
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 # Angular Fast i18n
 
 Angular Fast i18n let's your Angular application support internationalization in a simple and easy way!
