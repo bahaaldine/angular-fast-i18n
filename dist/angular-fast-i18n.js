@@ -1,4 +1,4 @@
-/*! angular-fast-i18n - v0.0.0 - 2014-07-09
+/*! angular-fast-i18n - v0.0.5 - 2014-07-09
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
 
@@ -57,7 +57,7 @@ angular.module('ngFastI18n.services', [])
 	}
 
 	function translate(elm, attr) {
-		if ( current == null) {
+		if ( typeof current === "undefined" ) {
 			current = navigator.language || navigator.userLanguage;
 			current = current.substr(0, 2);
 			if ( current == null ) {
