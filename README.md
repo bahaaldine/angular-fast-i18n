@@ -45,20 +45,17 @@ Here is a snippet of a language file:
 
 ```javascript
 {
-    "id": "en"
-    "header": {
-        "moto": "a better internationalization",
-        "actions": {
-            "signin": "Sign </b>In</b>",
-            "signup": "Getting Started"
-        },
-        "sex": {
-            "male": "Man",
-            "female": "Woman",
-        }
-        "search": "Search anything",
-        
-    }
+    "id": "en",
+    "moto": "a better internationalization",
+    "actions": {
+        "signin": "Sign <b>In</b>",
+        "signup": "Getting Started"
+    },
+    "sex": {
+        "male": "Man",
+        "female": "Woman"
+    },
+    "search": "Search anything"
     ...
 }
 ```

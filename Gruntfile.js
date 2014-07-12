@@ -1,6 +1,12 @@
-/*global module:false*/
+/*global require, module:false*/
 module.exports = function(grunt) {
   'use strict';
+
+  // Load grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
+
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
 
   // Project configuration.
   grunt.initConfig({
@@ -18,7 +24,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['lib/*.js'],
+        src: ['lib/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -95,19 +101,18 @@ module.exports = function(grunt) {
         dest: 'dist/',
         ext: '.min.css'
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'examples/dist'
+      },
+      src: '**/*'
     }
   });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-bump');
-
   // Default task.
   grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'cssmin']);
+
+  grunt.registerTask('pages', ['gh-pages']);
 
 };
