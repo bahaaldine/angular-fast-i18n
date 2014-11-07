@@ -284,6 +284,14 @@ module.exports = function (grunt) {
           src: [
             'fonts/*',
           ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            'i18n/**/*',
+          ]
         }]
       },
       styles: {
