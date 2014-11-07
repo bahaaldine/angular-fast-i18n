@@ -1,6 +1,6 @@
 {
     "name": "angular-fast-i18n",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "main": "dist/angular-fast-i18n.js",
     "license": "MIT",
     "authors": [
