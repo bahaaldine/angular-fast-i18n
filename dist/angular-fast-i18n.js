@@ -1,4 +1,4 @@
-/*! angular-fast-i18n - v0.0.18 - 2014-11-07
+/*! angular-fast-i18n - v0.0.19 - 2014-11-20
 * Copyright (c) 2014 ; Licensed  */
 'use strict';
 
@@ -11,8 +11,7 @@ angular.module('ngFastI18n.controllers', [])
 	];
 
 	$scope.setLanguage = function(e) {
-		i18nService.previous = i18nService.current;
-		i18nService.current = e; 
+		i18nService.setLanguage(e);
 	};
 }]);
 'use strict';
@@ -113,11 +112,18 @@ angular.module('ngFastI18n.services', [])
 		});
 	};
 
+	
+	var setLanguage = function(e) {
+		this.previous = this.current;
+		this.current = e; 
+	};
+
 	return  {
 		current: this.current,
 		previous: this.previous,
 		getString: getString,
-		translate: translate
+		translate: translate,
+		setLanguage: setLanguage
 	};
 }]);
 'use strict';
